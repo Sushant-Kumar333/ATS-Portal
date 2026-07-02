@@ -1,6 +1,6 @@
 const Application = require("../models/Application");
 const Job = require("../models/Job");
-const Company = require("../models/Company");
+const Company = require("../models/company");
 const Notification = require("../models/Notification");
 const sendEmail = require("../utils/sendEmail");
 const User = require("../models/User");
