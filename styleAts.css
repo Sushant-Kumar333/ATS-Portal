@@ -1,0 +1,81 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    background-image:url("ats.jpg");
+    background-size: cover;
+
+}
+.container{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login{
+    width:380px;
+    background-color: whitesmoke;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);;
+    padding:35px;
+    border-radius: 15px;
+}
+.login h1{
+    text-align: center;
+    color:rgb(6, 6, 52)
+    
+}
+.login p{
+    text-align: center;
+    margin:10px 0 25px;
+    color:rgb(148, 151, 154)
+
+}
+.input{
+    margin-bottom: 18px;
+}
+.input label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+.input input{
+    width:100%;
+    padding:16px;
+    border:1px solid rgb(229, 221, 221);
+    outline:none;
+    border-radius: 10px;
+}
+button{
+    width:100%;
+    padding:12px;
+    background-color: rgb(12, 12, 232);
+    border:none;
+    color:white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.links{
+    margin-top: 15px;
+    display:flex;
+    justify-content: space-between;
+}
+.links a{
+    text-decoration:none;
+    color:rgb(47, 47, 211);
+    font-size:16px;
+}
+#portal{
+    display:none;
+}
+header{
+    background-color:#2563eb ;
+    padding:20px;
+    text-align: center;
+    color:white;
+}
