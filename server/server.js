@@ -32,19 +32,12 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Routes
 // =============================
 app.use("/api/v1/user", authRoute);
-
 app.use("/api/v1/company", companyRoutes);
-
 app.use("/api/v1/job", jobRoutes);
-
 app.use("/api/v1/application", applicationRoutes);
-
 app.use("/api/v1/dashboard", dashboardRoutes);
-
 app.use("/api/v1/profile", profileRoutes);
-
 app.use("/api/v1/notification", notificationRoutes);
-
 app.use("/api/v1/student-dashboard", studentDashboardRoutes);
 
 // =============================
@@ -71,15 +64,18 @@ app.use((err, req, res, next) => {
 // =============================
 // MongoDB + Server
 // =============================
+const PORT = process.env.PORT || 5000;
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB Connected");
 
-    app.listen(5000, () => {
-      console.log("🚀 Server running on port 5000");
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
-    console.log(err);
+    console.error("❌ MongoDB Connection Error:");
+    console.error(err);
   });
