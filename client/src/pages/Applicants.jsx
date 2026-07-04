@@ -174,7 +174,7 @@ toast.success(res.data.message);
 
                   {app.applicant?.profile?.resume && (
                    <a
-  href={`http://localhost:5000/${app.applicant.profile.resume}`}
+  href={`https://ats-portal-tj20.onrender.com/${app.applicant.profile.resume}`}
   target="_blank"
   rel="noreferrer"
   className="inline-block mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"

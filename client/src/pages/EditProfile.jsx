@@ -119,7 +119,7 @@ return (
       profilePhoto
         ? URL.createObjectURL(profilePhoto)
         : formData.profilePhoto
-        ? `http://localhost:5000${formData.profilePhoto}`
+        ? `https://ats-portal-tj20.onrender.com${formData.profilePhoto}`
         : `https://ui-avatars.com/api/?name=${formData.fullname}`
     }
     alt="Profile"

@@ -132,7 +132,7 @@ function Applications() {
 
                     {application.applicant?.profile?.resume && (
                       <a
-                        href={`http://localhost:5000/${application.applicant.profile.resume}`}
+                        href={`https://ats-portal-tj20.onrender.com/${application.applicant.profile.resume}`}
                         target="_blank"
                         rel="noreferrer"
                         className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg"

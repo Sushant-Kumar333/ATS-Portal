@@ -100,7 +100,7 @@ const handleSubmit = async (e) => {
       <form onSubmit={handleSubmit}>
         {company.logo && typeof company.logo === "string" && (
   <img
-    src={`http://localhost:5000${company.logo}`}
+   src={`https://ats-portal-tj20.onrender.com${company.logo}`}
     alt="Company Logo"
     className="w-24 h-24 object-cover rounded mb-3"
   />

@@ -64,7 +64,7 @@ function Profile() {
               <img
                 src={
                   user.profile?.profilePhoto
-                    ? `http://localhost:5000${user.profile.profilePhoto}`
+                    ? `https://ats-portal-tj20.onrender.com${user.profile.profilePhoto}`
                     : `https://ui-avatars.com/api/?name=${user.fullname}&background=2563eb&color=fff&size=256`
                 }
                 alt="profile"
