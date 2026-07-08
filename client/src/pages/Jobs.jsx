@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import API from "../api/api";
 import JobCard from "../components/JobCard";
 
 function Jobs() {
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [jobs, setJobs] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
   const [jobType, setJobType] = useState("");
   const [appliedJobs, setAppliedJobs] = useState([]);
 
-useEffect(() => {
-  getJobs();
-}, [keyword, location, jobType]);
+  useEffect(() => {
+    getJobs();
+  }, [keyword, location, jobType]);
 
-useEffect(() => {
-  getAppliedJobs();
-}, []);
+  useEffect(() => {
+    if (user?.role === "student") {
+      getAppliedJobs();
+    }
+  }, []);
+
   // Get All Jobs
   const getJobs = async () => {
     try {
@@ -33,7 +41,6 @@ useEffect(() => {
       );
 
       setJobs(res.data.jobs);
-
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +58,6 @@ useEffect(() => {
       });
 
       setAppliedJobs(res.data.appliedJobs);
-
     } catch (error) {
       console.log(error);
     }
@@ -59,21 +65,26 @@ useEffect(() => {
 
   return (
     <div className="flex">
-
       <Sidebar />
 
       <div className="flex-1 bg-gray-100 min-h-screen">
-
         <Navbar />
 
         <div className="p-8">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-3xl font-bold">Jobs</h1>
 
-          <h1 className="text-3xl font-bold mb-6">
-            Jobs
-          </h1>
+            {user?.role === "recruiter" && (
+              <button
+                onClick={() => navigate("/jobs/create")}
+                className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg"
+              >
+                + Create Job
+              </button>
+            )}
+          </div>
 
           <div className="flex gap-4 mb-6">
-
             <input
               className="border p-2 rounded w-60"
               placeholder="Search Job"
@@ -94,36 +105,36 @@ useEffect(() => {
               onChange={(e) => setJobType(e.target.value)}
             >
               <option value="">All Types</option>
-              <option>Full Time</option>
-              <option>Part Time</option>
-              <option>Internship</option>
+              <option value="Full Time">Full Time</option>
+              <option value="Part Time">Part Time</option>
+              <option value="Internship">Internship</option>
             </select>
 
             <button
               onClick={getJobs}
-              className="bg-blue-600 text-white px-5 rounded"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 rounded"
             >
               Search
             </button>
-
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-
-            {jobs.map((job) => (
-              <JobCard
-                key={job._id}
-                job={job}
-                isApplied={appliedJobs.includes(job._id)}
-              />
-            ))}
-
-          </div>
-
+          {jobs.length === 0 ? (
+            <div className="text-center text-gray-500 mt-10">
+              No Jobs Found
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-6">
+              {jobs.map((job) => (
+                <JobCard
+                  key={job._id}
+                  job={job}
+                  isApplied={appliedJobs.includes(job._id)}
+                />
+              ))}
+            </div>
+          )}
         </div>
-
       </div>
-
     </div>
   );
 }

@@ -36,6 +36,7 @@ function CreateJob() {
           Authorization: `Bearer ${token}`,
         },
       });
+       console.log("Companies =", res.data.companies);
 
       setCompanies(res.data.companies);
 
@@ -53,6 +54,7 @@ function CreateJob() {
 
   const createJob = async (e) => {
     e.preventDefault();
+    console.log(formData);
 
     try {
 
@@ -73,12 +75,12 @@ function CreateJob() {
       navigate("/jobs");
 
     } catch (error) {
+  console.log("Status:", error.response.status);
+  console.log("Error:", error.response.data);
+  console.log("Form:", formData);
 
-      console.log(error);
-
-      alert(error.response?.data?.message || "Server Error");
-
-    }
+  alert(error.response?.data?.message || "Server Error");
+}
   };
 
   return (
@@ -166,27 +168,23 @@ function CreateJob() {
             />
 
             <select
-              name="company"
-              className="w-full border p-3 rounded"
-              onChange={handleChange}
-            >
+  name="company"
+  value={formData.company}
+  className="w-full border p-3 rounded"
+  onChange={handleChange}
+>
+  <option value="">Select Company</option>
 
-              <option>Select Company</option>
+  {companies.map((company) => (
+    <option
+      key={company._id}
+      value={company._id}
+    >
+      {company.name}
+    </option>
+  ))}
+</select>
 
-              {
-                companies.map((company) => (
-
-                  <option
-                    key={company._id}
-                    value={company._id}
-                  >
-                    {company.name}
-                  </option>
-
-                ))
-              }
-
-            </select>
 
             <button
               className="bg-blue-600 text-white px-6 py-3 rounded"

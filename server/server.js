@@ -37,7 +37,7 @@ app.use("/api/v1/job", jobRoutes);
 app.use("/api/v1/application", applicationRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/profile", profileRoutes);
-app.use("/api/v1/notification", notificationRoutes);
+app.use("/api/v1/notifications", notificationRoutes);
 app.use("/api/v1/student-dashboard", studentDashboardRoutes);
 
 // =============================

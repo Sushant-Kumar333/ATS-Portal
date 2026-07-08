@@ -3,6 +3,10 @@ const Job = require("../models/Job");
 // Create Job
 exports.createJob = async (req, res) => {
   try {
+
+      console.log("req.body =", req.body);
+    console.log("req.user =", req.user);
+
     const {
       title,
       description,
