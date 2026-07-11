@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import API from "../api/api";
+import toast from "react-hot-toast";
 
 function CreateJob() {
 
@@ -70,7 +71,7 @@ function CreateJob() {
         }
       );
 
-      alert(res.data.message);
+      toast.success(res.data.message);
 
       navigate("/jobs");
 
@@ -79,7 +80,7 @@ function CreateJob() {
   console.log("Error:", error.response.data);
   console.log("Form:", formData);
 
-  alert(error.response?.data?.message || "Server Error");
+  toast.error(error.response?.data?.message || "Server Error");
 }
   };
 
