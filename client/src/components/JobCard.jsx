@@ -6,7 +6,7 @@ function JobCard({ job, isApplied }) {
   const [loading, setLoading] = useState(false);
   const [applied, setApplied] = useState(isApplied);
 
- const user = JSON.parse(localStorage.getItem("user")) || {};
+  const user = JSON.parse(localStorage.getItem("user")) || {};
 
   useEffect(() => {
     setApplied(isApplied);
@@ -29,7 +29,6 @@ function JobCard({ job, isApplied }) {
       );
 
       alert(res.data.message);
-
       setApplied(true);
     } catch (error) {
       if (error.response?.data?.message === "Already Applied") {
@@ -45,127 +44,147 @@ function JobCard({ job, isApplied }) {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border">
+    <article className="job-card">
 
-      {/* Company */}
+      {/* TOP */}
+      <div className="job-card-top">
 
-      <p className="text-sm text-blue-600 font-semibold">
-        {job.company?.name}
-      </p>
-
-      {/* Title */}
-
-      <h2 className="text-2xl font-bold mt-2">
-        {job.title}
-      </h2>
-
-      {/* Description */}
-
-      <p className="text-gray-600 mt-3 line-clamp-3">
-        {job.description}
-      </p>
-
-      {/* Details */}
-
-      <div className="grid grid-cols-2 gap-3 mt-5 text-sm">
-
-        <div>
-          <span className="font-semibold">📍 Location</span>
-          <br />
-          {job.location}
+        <div className="company-logo">
+          {job.company?.name?.charAt(0)?.toUpperCase() || "C"}
         </div>
 
-        <div>
-          <span className="font-semibold">💼 Job Type</span>
-          <br />
+        <div className="job-company">
+          <span>{job.company?.name || "Company"}</span>
+
+          <div className="job-posted">
+            ● Open Position
+          </div>
+        </div>
+
+        <div className="job-type-badge">
           {job.jobType}
         </div>
 
-        <div>
-          <span className="font-semibold">💰 Salary</span>
-          <br />
-          ₹ {job.salary} LPA
+      </div>
+
+      {/* TITLE */}
+      <h2 className="job-title">
+        {job.title}
+      </h2>
+
+      {/* DESCRIPTION */}
+      <p className="job-description">
+        {job.description || "No description available."}
+      </p>
+
+      {/* INFORMATION */}
+      <div className="job-info-grid">
+
+        <div className="job-info">
+          <div className="info-icon location-icon">📍</div>
+          <div>
+            <span>Location</span>
+            <strong>{job.location || "Not specified"}</strong>
+          </div>
         </div>
 
-        <div>
-          <span className="font-semibold">⭐ Experience</span>
-          <br />
-          {job.experience} Years
+        <div className="job-info">
+          <div className="info-icon salary-icon">₹</div>
+          <div>
+            <span>Salary</span>
+            <strong>₹ {job.salary} LPA</strong>
+          </div>
+        </div>
+
+        <div className="job-info">
+          <div className="info-icon experience-icon">★</div>
+          <div>
+            <span>Experience</span>
+            <strong>{job.experience} Years</strong>
+          </div>
+        </div>
+
+        <div className="job-info">
+          <div className="info-icon position-icon">👥</div>
+          <div>
+            <span>Positions</span>
+            <strong>{job.position || "Multiple"}</strong>
+          </div>
         </div>
 
       </div>
 
-      {/* Requirements */}
+      {/* SKILLS */}
+      {job.requirements?.length > 0 && (
+        <div className="job-skills">
 
-      <div className="mt-5">
+          <div className="skills-heading">
+            Skills Required
+          </div>
 
-        <h3 className="font-semibold mb-2">
-          Skills Required
-        </h3>
+          <div className="skills-list">
 
-        <div className="flex flex-wrap gap-2">
+            {job.requirements.map((skill, index) => (
+              <span key={index}>
+                {skill}
+              </span>
+            ))}
 
-          {job.requirements?.map((skill, index) => (
-            <span
-              key={index}
-              className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs"
+          </div>
+
+        </div>
+      )}
+
+      {/* ACTIONS */}
+      <div className="job-actions">
+
+        <Link
+          to={`/jobs/${job._id}`}
+          className="details-btn"
+        >
+          View Details
+          <span>→</span>
+        </Link>
+
+        {user?.role === "student" && (
+          <button
+            onClick={applyJob}
+            disabled={loading || applied}
+            className={`apply-btn ${
+              applied ? "applied-btn" : ""
+            }`}
+          >
+            {loading
+              ? "Applying..."
+              : applied
+              ? "Applied ✓"
+              : "Apply Now →"}
+          </button>
+        )}
+
+        {user?.role === "recruiter" && (
+          <div className="recruiter-actions">
+
+            <Link
+              to={`/jobs/edit/${job._id}`}
+              className="edit-btn"
             >
-              {skill}
-            </span>
-          ))}
+              Edit
+            </Link>
 
-        </div>
+            <Link
+              to={`/applicants/${job._id}`}
+              className="applicants-btn"
+            >
+              Applicants
+            </Link>
+
+          </div>
+        )}
 
       </div>
 
-      {/* Buttons */}
-
-<div className="flex gap-3 mt-6">
-
-  <Link
-    to={`/jobs/${job._id}`}
-    className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg"
-  >
-    View Details
-  </Link>
-
- {user?.role === "recruiter" && (
-  <>
-    <Link
-      to={`/jobs/edit/${job._id}`}
-      className="bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 rounded-lg"
-    >
-      Edit
-    </Link>
-
-   <Link
-  to={`/applicants/${job._id}`}
-  className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg"
->
-  Applicants
-</Link>
-  </>
-)}
-  {user?.role === "student" && (
-    <button
-      onClick={applyJob}
-      disabled={loading || applied}
-      className={`px-5 py-2 rounded-lg text-white ${
-        applied
-          ? "bg-gray-500 cursor-not-allowed"
-          : "bg-green-600 hover:bg-green-700"
-      }`}
-    >
-      {loading
-        ? "Applying..."
-        : applied
-        ? "Applied ✅"
-        : "Apply Now"}
-    </button>
-  )}
-
-</div>
-    </div>
+    </article>
   );
 }
 

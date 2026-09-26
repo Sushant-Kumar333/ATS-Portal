@@ -3,108 +3,274 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <>
+    <div className="home-page">
+
       <HomeNavbar />
 
-      {/* Hero */}
+      {/* HERO */}
+      <section className="home-hero">
 
-      <section className="bg-gradient-to-r from-blue-700 to-indigo-700 text-white">
+        <div className="hero-content">
 
-        <div className="max-w-7xl mx-auto px-8 py-24 text-center">
+          <div className="hero-badge">
+            ✨ India's Smart Applicant Tracking System
+          </div>
 
-          <h1 className="text-6xl font-bold leading-tight">
-            Find Your Dream Job
+          <h1>
+            Find Your
+            <span> Dream Job</span>
           </h1>
 
-          <p className="mt-6 text-xl text-blue-100">
-            India's Smart Applicant Tracking System
+          <p>
+            Discover opportunities, connect with top companies,
+            and manage your entire career journey from one place.
           </p>
 
-          <div className="mt-10 flex justify-center gap-5">
+          <div className="hero-buttons">
 
-            <Link
-              to="/jobs"
-              className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:scale-105 transition"
-            >
+            <Link to="/jobs" className="hero-primary">
               Browse Jobs
+              <span>→</span>
             </Link>
 
-            <Link
-              to="/register"
-              className="border border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-blue-700 transition"
-            >
+            <Link to="/register" className="hero-secondary">
               Get Started
             </Link>
 
           </div>
 
-        </div>
+          <div className="hero-stats">
 
-      </section>
+            <div>
+              <strong>1000+</strong>
+              <span>Jobs</span>
+            </div>
 
-      {/* Features */}
+            <div>
+              <strong>500+</strong>
+              <span>Companies</span>
+            </div>
 
-      <section className="max-w-7xl mx-auto px-8 py-20">
+            <div>
+              <strong>10K+</strong>
+              <span>Applicants</span>
+            </div>
 
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Why Choose ATS Portal?
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-8">
-
-          <div className="bg-white shadow-lg rounded-xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-3">
-              1000+ Jobs
-            </h3>
-
-            <p className="text-gray-600">
-              Discover jobs from top companies across India.
-            </p>
-          </div>
-
-          <div className="bg-white shadow-lg rounded-xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-3">
-              Easy Apply
-            </h3>
-
-            <p className="text-gray-600">
-              Apply with one click using your ATS profile.
-            </p>
-          </div>
-
-          <div className="bg-white shadow-lg rounded-xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-3">
-              Recruiter Panel
-            </h3>
-
-            <p className="text-gray-600">
-              Manage companies, jobs and applicants easily.
-            </p>
           </div>
 
         </div>
 
+        {/* Decorative dashboard */}
+        <div className="hero-dashboard">
+
+          <div className="dashboard-top">
+            <span>ATS Dashboard</span>
+            <span className="online-dot">●</span>
+          </div>
+
+          <div className="dashboard-card">
+
+            <div className="mini-icon">💼</div>
+
+            <div>
+              <strong>Software Engineer</strong>
+              <p>Tech Company • Remote</p>
+            </div>
+
+            <span className="apply-badge">
+              Apply
+            </span>
+
+          </div>
+
+          <div className="dashboard-card">
+
+            <div className="mini-icon">🎨</div>
+
+            <div>
+              <strong>UI/UX Designer</strong>
+              <p>Creative Studio • Hybrid</p>
+            </div>
+
+            <span className="apply-badge">
+              Apply
+            </span>
+
+          </div>
+
+          <div className="dashboard-card">
+
+            <div className="mini-icon">📊</div>
+
+            <div>
+              <strong>Data Analyst</strong>
+              <p>FinTech • On-site</p>
+            </div>
+
+            <span className="apply-badge">
+              Apply
+            </span>
+
+          </div>
+
+        </div>
+
       </section>
 
-      {/* Footer */}
 
-      <footer className="bg-gray-900 text-gray-300 py-8">
+      {/* WHY ATS */}
+      <section className="why-section">
 
-        <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
+        <div className="section-heading">
 
-          <h2 className="text-2xl font-bold text-white">
-            ATS Portal
+          <span>WHY ATS PORTAL</span>
+
+          <h2>
+            Everything you need to
+            <span> grow your career.</span>
           </h2>
 
           <p>
-            © 2026 ATS Portal. All Rights Reserved.
+            A simple platform for students, job seekers and recruiters.
           </p>
 
         </div>
 
+
+        <div className="feature-grid">
+
+          <div className="feature-card">
+
+            <div className="feature-icon blue">
+              💼
+            </div>
+
+            <div className="feature-number">
+              01
+            </div>
+
+            <h3>1000+ Jobs</h3>
+
+            <p>
+              Discover opportunities from companies
+              across different industries.
+            </p>
+
+            <Link to="/jobs">
+              Explore Jobs →
+            </Link>
+
+          </div>
+
+
+          <div className="feature-card featured-card">
+
+            <div className="feature-icon purple">
+              ⚡
+            </div>
+
+            <div className="feature-number">
+              02
+            </div>
+
+            <h3>Easy Apply</h3>
+
+            <p>
+              Create your profile once and apply for
+              suitable jobs quickly.
+            </p>
+
+            <Link to="/jobs">
+              Find a Job →
+            </Link>
+
+          </div>
+
+
+          <div className="feature-card">
+
+            <div className="feature-icon green">
+              🏢
+            </div>
+
+            <div className="feature-number">
+              03
+            </div>
+
+            <h3>Recruiter Panel</h3>
+
+            <p>
+              Manage companies, jobs and applicants
+              from one convenient dashboard.
+            </p>
+
+            <Link to="/register">
+              Join ATS →
+            </Link>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* CTA */}
+      <section className="home-cta">
+
+        <div>
+
+          <span>READY TO GET STARTED?</span>
+
+          <h2>
+            Your next opportunity
+            <br />
+            could be one click away.
+          </h2>
+
+          <p>
+            Create your ATS Portal account and start exploring
+            opportunities today.
+          </p>
+
+          <Link to="/register">
+            Create Free Account →
+          </Link>
+
+        </div>
+
+      </section>
+
+
+      {/* FOOTER */}
+      <footer className="home-footer">
+
+        <div className="footer-brand">
+
+          <h2>ATS Portal</h2>
+
+          <p>
+            Smart recruitment. Better opportunities.
+          </p>
+
+        </div>
+
+        <div className="footer-links">
+
+          <Link to="/">Home</Link>
+          <Link to="/jobs">Jobs</Link>
+          <Link to="/companies">Companies</Link>
+          <Link to="/register">Register</Link>
+
+        </div>
+
+        <div className="footer-bottom">
+          © 2026 ATS Portal. All Rights Reserved.
+        </div>
+
       </footer>
 
-    </>
+    </div>
   );
 }
 
